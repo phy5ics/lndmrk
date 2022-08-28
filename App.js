@@ -3,7 +3,10 @@ import { StyleSheet, Text, View } from 'react-native';
 
 import { Amplify } from 'aws-amplify';
 import awsconfig from './src/aws-exports';
+
 Amplify.configure(awsconfig);
+
+export {default} from './storybook';
 
 export default function App() {
   return (
