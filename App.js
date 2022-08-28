@@ -3,12 +3,14 @@ import { StyleSheet, Text, View } from 'react-native';
 
 import { Amplify } from 'aws-amplify';
 import awsconfig from './src/aws-exports';
-
 Amplify.configure(awsconfig);
 
 export {default} from './storybook';
 
-export default function App() {
+import { LogBox } from "react-native";
+LogBox.ignoreLogs(["EventEmitter.removeListener"]);
+
+/*export default function App() {
   return (
     <View style={styles.container}>
       <Text>Open up App.js to start working on your app!</Text>
@@ -25,3 +27,4 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
   },
 });
+*/
