@@ -1,0 +1,51 @@
+# This "input" configures a global authorization rule to enable public access to
+# all models in this schema. Learn more about authorization rules here: https://docs.amplify.aws/cli/graphql/authorization-rules
+input AMPLIFY { globalAuthRule: AuthRule = { allow: public } } # FOR TESTING ONLY!
+
+type Comments @model @auth(rules: [{allow: public}]) {
+  id: ID!
+  comment: String
+  added_on: AWSDateTime
+  landmarksID: ID! @index(name: "byLandmarks") 
+}
+
+type Images @model @auth(rules: [{allow: public}]) {
+  id: ID!
+  landmarksID: ID! @index(name: "byLandmarks")
+  published: String
+  image_url: AWSURL
+  added_on: AWSDateTime
+}
+
+type Landmarks @model @auth(rules: [{allow: public}]) @searchable {
+  id: ID!
+  markerHeading: String
+  markerText: String
+  designator: String
+  locationText: String
+  city: String
+  coordinates: Coordinates!
+  published: Boolean
+  Images: [Images] @hasMany(indexName: "byLandmarks", fields: ["id"])
+  Comments: [Comments] @hasMany(indexName: "byLandmarks", fields: ["id"])
+}
+
+type Coordinates {
+  lat: Float!
+  lon: Float!
+}
+
+#type Query {
+#  searchByDistance(location: CoordinatesInput!, km: Int): LandmarkConnection
+#}
+
+#input CoordinatesInput {
+#  lat: Float!
+#  lon: Float!
+#}
+
+#type LandmarkConnection {
+#  items: [Landmarks]
+#  total: Int
+#  nextToken: String
+#}

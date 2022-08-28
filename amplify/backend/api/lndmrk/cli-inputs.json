@@ -1,0 +1,12 @@
+{
+  "version": 1,
+  "serviceConfiguration": {
+    "apiName": "lndmrk",
+    "serviceName": "AppSync",
+    "gqlSchemaPath": "/Users/barton/Documents/projects/lndmrk/amplify/backend/api/lndmrk/schema.graphql",
+    "defaultAuthType": {
+      "mode": "API_KEY",
+      "expirationTime": 7
+    }
+  }
+}
